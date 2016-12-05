@@ -1,0 +1,133 @@
+Micro Framework feedback
+
+Tanguy Herrmann
+Tuxago ⧓ 
+tanguy@tuxago.com
+
+* Microservices
+
+.image assets/facebook.png
+
+* Micro
+
+- Framework for microservices in RPC
+- Uses protobuf as microservices data exchange
+- Provide web or API user interface
+- Very pluggable architecture
+- Quite active community, and growing
+- Full time developer sponsored on the project (@chuhnk)
+
+.link http://micro.mu Micro 
+
+* Architecture
+
+- Registry
+- Transport
+- Broker
+- Selector
+- Codec
+- Server
+- Client
+- Sidecar
+
+* Architecture
+
+.image assets/arch.png
+
+* Plugins
+
+- Bot 	    Bot inputs and commands
+- Broker 	Asynchronous Pub/Sub; NATS, NSQ, RabbitMQ, Kafka
+- Client 	RPC Client; gRPC
+- Codec 	RPC Encoding; BSON, Mercury
+- KV 	    Key-Value; Memcached, Redis
+- Metrics 	Instrumentation; Statsd, Telegraf, Prometheus
+- Micro 	Micro Toolkit Plugins
+
+* Plugins
+
+- Registry 	Service Discovery; Etcd, Gossip, NATS
+- Selector 	Node Selection; Label, Mercury
+- Server 	Alternative servers; HTTP
+- Sync 	    Locking/Leadership election; Consul, Etcd
+- Trace 	Distributed tracing; Zipkin
+- Transport Synchronous Request/Response; NATS, RabbitMQ
+- Wrappers 	Client/Server middleware; Circuit Breakers, Rate Limit
+
+* Workflow
+
+.image assets/greeter.png
+
+* API call
+
+.image assets/api.png
+
+* Transport
+
+.image assets/request-response.png
+
+* Broker
+
+.image assets/pub-sub.png
+
+* Problems?
+
+.image assets/trollface.png 350 500
+
+* Examples
+
+Too simple
+Not enough documentation for real life examples
+
+* Examples
+
+- Slack
+
+* Why the duplication?
+
+.image assets/api-web.png
+
+Web and API might serve the same resources, do the same queries in backend services
+This is just a question of presentation
+
+* Why the duplication?
+
+- Regroup logical query in a new microservice
+- This is not SOA
+
+* Marshal problem
+
+*  
+
+.image assets/marshall.jpg 
+
+* Marshal problem
+
+JSON -> HTTP body -> protobuf HTTP object -> Go struct -> protobuf Business object -> Go struct -> BSON
+
+* Marshal problem
+
+- Design the application data well
+- Design the API even better
+- Test all fields thoroughly
+
+* Test
+
+Testing microservices is crucial
+Testing microservices is very complex
+
+.link http://martinfowler.com/articles/microservice-testing/#conclusion-summary
+
+* Test
+
+- Have unit test and mocks to allow fast unit testing
+- Test End2End and generate docs from it with
+.link https://github.com/adams-sarah/test2doc test2doc
+
+* One Man Army
+
+.image assets/One_Man_Army.jpg
+
+* One Man Army
+
+- Is microservices really useful in that case?
